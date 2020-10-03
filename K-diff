@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        if(k == 0) {
+            unordered_map <int, int> m;
+            for(auto i:nums) {
+                m[i]++;
+            }
+            
+            int ans = 0;
+            for(auto i:m) {
+                if(i.second >= 2) ans++;
+            }
+            
+            return ans;
+        }
+        
+        set <int> s;
+        
+        for(auto i:nums) {
+            s.insert(i);
+        }
+        
+        int c = 0;
+        
+        for(auto i:s) {
+            if(s.find(i+k) != s.end()) c++;
+        }
+        
+        return c;
+    }
+};
